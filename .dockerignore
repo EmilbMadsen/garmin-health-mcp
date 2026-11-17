@@ -1,0 +1,13 @@
+.git
+.venv
+dumps
+secrets
+.env
+*.db
+tests
+.github
+.mypy_cache
+.ruff_cache
+.pytest_cache
+__pycache__
+garmin-health-mcp-HANDOFF.md

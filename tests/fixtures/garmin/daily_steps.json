@@ -1,0 +1,44 @@
+[
+  {
+    "calendarDate": "2024-01-09",
+    "totalSteps": 16756,
+    "totalDistance": 10241,
+    "stepGoal": 5054
+  },
+  {
+    "calendarDate": "2024-01-10",
+    "totalSteps": 6344,
+    "totalDistance": 3621,
+    "stepGoal": 3083
+  },
+  {
+    "calendarDate": "2024-01-11",
+    "totalSteps": 73625,
+    "totalDistance": 73268,
+    "stepGoal": 5086
+  },
+  {
+    "calendarDate": "2024-01-12",
+    "totalSteps": 7186,
+    "totalDistance": 9314,
+    "stepGoal": 8090
+  },
+  {
+    "calendarDate": "2024-01-13",
+    "totalSteps": 6625,
+    "totalDistance": 6950,
+    "stepGoal": 9402
+  },
+  {
+    "calendarDate": "2024-01-14",
+    "totalSteps": 48262,
+    "totalDistance": 59010,
+    "stepGoal": 6828
+  },
+  {
+    "calendarDate": "2024-01-15",
+    "totalSteps": 9175,
+    "totalDistance": 8439,
+    "stepGoal": 1643
+  }
+]

@@ -1,0 +1,48 @@
+# Remote deployment: the app plus a Cloudflare Tunnel. No port is published; the only way in is
+# the tunnel. See docs/deployment.md.
+#
+# Before `docker compose up -d`:
+#   1. secrets/garmin_api_key  - your Garmin Personal API key (owner uid 10001, mode 0400)
+#   2. .env                    - GARMIN_HEALTH_MCP_PUBLIC_URL, CLOUDFLARED_IMAGE, TUNNEL_TOKEN
+#   3. docker compose run --rm app auth init
+
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    environment:
+      GARMIN_HEALTH_MCP_PUBLIC_URL: ${GARMIN_HEALTH_MCP_PUBLIC_URL:?set it in .env}
+      GARMIN_HEALTH_MCP_TZ: ${GARMIN_HEALTH_MCP_TZ:-Europe/Copenhagen}
+      # cloudflared is the only client that can reach the app, so its header is trustworthy.
+      GARMIN_HEALTH_MCP_CLIENT_IP_HEADER: CF-Connecting-IP
+      # Optional extra layer, off by default (see docs/security.md):
+      # GARMIN_HEALTH_MCP_ALLOWED_CIDRS: 160.79.104.0/21
+    secrets:
+      - garmin_api_key
+    volumes:
+      - garmin-state:/data
+    # no `ports:` on purpose: only cloudflared (same compose network) can reach the app
+
+  cloudflared:
+    image: ${CLOUDFLARED_IMAGE:?pin a release, e.g. cloudflare/cloudflared:<version>}
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN:?set it in .env}
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    depends_on: [app]
+
+secrets:
+  garmin_api_key:
+    file: ./secrets/garmin_api_key
+
+volumes:
+  garmin-state:
+

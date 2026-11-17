@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Problems in Garmin's Personal API client
+    url: https://github.com/garmin/connect-personal-api-python/issues
+    about: Missing endpoints or API behaviour belong in Garmin's library.

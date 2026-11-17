@@ -1,0 +1,27 @@
+{
+  "chronologicalAge": 35,
+  "fitnessAge": 33.5,
+  "previousFitnessAge": 34.0,
+  "components": {
+    "vigorousDaysAvg": {
+      "value": 1.54,
+      "stale": false,
+      "numOfWeeksForIm": 8
+    },
+    "rhr": {
+      "value": 18,
+      "stale": false
+    },
+    "vigorousMinutesAvg": {
+      "value": 186.81,
+      "stale": false,
+      "numOfWeeksForIm": 7
+    },
+    "bmi": {
+      "value": 82.25,
+      "stale": false,
+      "lastMeasurementDate": "2024-01-04"
+    }
+  },
+  "lastUpdated": "2024-01-15T00:00:00.0"
+}
